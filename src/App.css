@@ -32,7 +32,61 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#Title {
+  text-align: center;
+}
+
+#word {
+  width: 150px;
+  height: 30px;
+}
+
+.word_entry {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.button_center {
+  margin-top: 15px;
+  margin-right: 50px;
+}
+
+.delete_button {
+  margin-bottom: 30px;
+  text-align: end;
+}
+
+.wordSearchLabel {
+  text-align: center;
+  opacity: .5;
+  width: 400px;
+  margin: auto;
+}
+
+.DisplayInfo {
+  text-align: center;
+}
+
+.DisplayButtons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+#word_data_output {
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+
+.searchFieldDescription {
+  text-align: center;
+
 }
