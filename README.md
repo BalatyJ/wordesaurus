@@ -4,7 +4,7 @@
 
 
 #### Input:
-A JSON object formatted as { 'day': value1, 'month': value2 }
+A dictionary formatted as { 'day': value1, 'month': value2 }
 where value1 and value2 are integers representing the day and month of a birthday.
 
 #### Output:
