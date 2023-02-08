@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+### Communication Contract for Microservice Program days-to-birthday.py:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+#### Input:
+A JSON object formatted as { 'day': value1, 'month': value2 }
+where value1 and value2 are integers representing the day and month of a birthday.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Output:
+Returns the days until the birthday as a string.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Client Module Dependencies:
+      import pika
+      import json
+      import uuid
 
-### `npm test`
+#### Call Example:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Use the following template to make a call to days-to-birthday.py, where the method "call(self, birthday)" sends a request to
+days-to-birthday.py containing the day and month of a birthday in JSON. Once a response is received, the value is stored in a variable
+called response.
 
-### `npm run build`
+    class BirthdayStart(object):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+      def __init__(self):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+          self.connection = pika.BlockingConnection(
+              pika.ConnectionParameters(host='localhost'))
+          self.channel = self.connection.channel()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+          result = self.channel.queue_declare(queue='', exclusive=True)
+          self.callback_queue = result.method.queue
 
-### `npm run eject`
+          self.channel.basic_consume(
+              queue=self.callback_queue,
+              on_message_callback=self.on_response,
+              auto_ack=True)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+      def on_response(self, ch, method, props, body):
+          if self.corr_id == props.correlation_id:
+              self.response = body
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+      def call(self, birthday):
+          self.response = None
+          self.corr_id = str(uuid.uuid4())
+          self.channel.basic_publish(
+              exchange='',
+              routing_key='birthdayApp',
+              properties=pika.BasicProperties(
+                  reply_to=self.callback_queue,
+                  correlation_id=self.corr_id,
+              ),
+              body=json.dumps(birthday))
+        
+          self.connection.process_data_events(time_limit=None)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+          return int(self.response)
+        
+    calculateDaysToBirthday = BirthdayStart()
+    response = calculateDaysToBirthday.call(birthday)
+  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Sequence Diagram
 
-## Learn More
+![image](https://user-images.githubusercontent.com/107899791/217441325-3a93ccf5-9987-4386-b30d-9a1542286501.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
