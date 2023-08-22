@@ -1,0 +1,168 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --custom-color: rgb(6, 85, 0);
+  --custom-color-navButtons: rgb(0, 0, 0);
+  --custom-background-navButtons: rgb(23, 158, 255);
+  --custom-background-activeNavButton: rgb(232, 81, 0);
+  --custom-size: 1em;
+  --custom-background-color: #885200;
+  --custom-body-color: rgba(242, 255, 160, 0.9);
+  --custom-border-color: rgba(198, 116, 0, 0.3);
+  --default-color: hsla(177, 100%, 42%, 1);
+  --default-darkest: hsla(177, 100%, 18%, 1);
+  --default-brightest: hsla(177, 100%, 78%, 1);
+  --default-transparent: hsla(177, 100%, 58%, 0.1);
+}
+
+
+#Title {
+  text-align: center;
+}
+
+#word {
+  width: 150px;
+  height: 30px;
+}
+
+#display_area {
+  width: 90%;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+#App {
+  background-color: var(--custom-body-color);
+  border: 25px groove var(--custom-border-color);
+}
+
+#root {
+  background-color: var(--custom-background-color);
+  padding: 5% 5% 11%;
+}
+
+.word_entry {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.functionality-overview {
+  margin-left: 30px;
+  text-align: left;
+  font-size: small;
+}
+
+.button_center {
+  margin-top: 15px;
+  margin-right: 50px;
+}
+
+.delete_button {
+  margin-bottom: 30px;
+  text-align: end;
+}
+
+#tooltip-top,
+#tooltip-left {
+  font-size: small;
+}
+
+.wordSearchLabel {
+  text-align: center;
+  width: 400px;
+  margin: auto;
+}
+
+.DisplayInfo {
+  text-align: center;
+}
+
+.DisplayButtons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.NavBar {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin: 25px;
+  padding-bottom: 40px;
+  border: none;
+}
+
+.NavBar button {
+  color: var(--custom-color-navButtons);
+  background-color: var(--custom-background-navButtons);
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+
+.NavBar button:hover {
+  opacity: 1;
+  transition: 200ms;
+}
+
+/* Adapted from https://www.geeksforgeeks.org/how-to-add-a-pressed-effect-on-button-click-in-css/ */
+.NavBar button:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.searchFieldDescription {
+  text-align: center;
+}
+
+
+div.HomePage {
+  text-align: center;
+}
+
+
+footer {
+  text-align: center;
+  font-size: x-small;
+  padding-bottom: 1px;
+}

@@ -1,0 +1,18 @@
+{
+  "name": "wordesaurus_app_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "wordesaurus_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node wordesaurus_server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  }
+}
