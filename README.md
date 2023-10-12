@@ -8,5 +8,4 @@ The program includes a front-end website, using CSS, HTML, React, Bootstrap, and
 
 The keys used in the original version to make API requests were removed so this project could be published publicly.
 
-The challenging real-world project obtained a 100% grade, and incorporated an Agile workflow
-involving Sprints, User Stories, Functional and Non-Functional requirements, and a communication contract with my classmate.
+The project incorporated an Agile workflow involving Sprints, User Stories, Functional and Non-Functional requirements, and a communication contract with my classmate.
