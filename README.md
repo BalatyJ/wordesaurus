@@ -1,3 +1,5 @@
+### Wordesaurus
+
 A personal project developed in CS 361 Software Engineering I at Oregon State University in Winter 2023 term.
 I developed a real-world application using Node.js and Javascript to retrieve and display information about words from
 a words API through Rapid API using asynchronous Axios calls. 
